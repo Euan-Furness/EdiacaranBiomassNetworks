@@ -1,3 +1,21 @@
-This repository contains code associated with the manuscript, "Sloppy feeding by predators destabilises early animal food webs in the Ediacaran" (Furness & Mitchell).
+This repository contains code associated with the manuscript, "Sloppy feeding by predators destabilises early animal food webs in the Ediacaran" (Furness & Mitchell). Code use for that manuscript is described in the methods section of that manuscript.
 
-Code use for that manuscript is described in the methods section of that manuscript.
+Network_Code.cpp is the C++ script used to simulate ecosystem dynamics based on the Nilpena 1-TF fossil bed. This simulation operates by setting up an ecological network, parameterised using body size and abundance data for the taxa on the bed, with inferences made about feeding mode based on the literature. The strength of connections between nodes within this network is determined based on the feeding rate necessary to maintain equilibrium biomass within each node. These connections are converted into an eigenmatrix, the diagonal elements of which confer stability upon the network. The code calculates the magnitude of the diagonal element necessary to maintain stability within the network, as well as the identity of the dominant stabilising and destabilising feedback loops within the network.
+
+Microbial conditions in the Ediacaran are not clear, and cannot be inferred from the fossil record in the same way as the size and abundance of macroorganisms. To compensate for this, Network_Code.cpp iterates over 216,000 different microbial parameter combinations: every possible combination of 60 different values of detrital organic carbon concentration, autotrophic plankton biomass, and heterotrophic plankton biomass. Stability and dominant feedback loop data are output for each combination of these values.
+
+Running Network_Code.cpp requires astandard C++ compiler and the download of the Eigen package. It is sufficient to clone the Eigen GitHub repository locally and then redirect the modify the related path at the top of the Network_Code.cpp file to point to the Eigenvalues file within the Eigen folder in your local copy of the repository.
+
+Comments within the script header point to the lines that may need to be adjusted in order to run the code locally and with your desired settings. Please modify the settings located at flags "B)", "C)", "D)", and "E)" as required to replicate the desired experiments or conduct new experiments. Additional changes can be made to abundance and/or biomass values within the code if desired, but this is not required to replicate the results of the experiments in the publication.
+
+
+Process_Network_Output.py is a python script which converts the raw output files from Network_Code.cpp into more concise files that can then be read by the Compare_Processed_Networks.py python script. These more concise files consist of 60x60x60 cubes of data, where each axis of the cube represents variation in one biomass value within the network.
+
+Process_Network_Output.py shoudl run out of the box, provided that a suitable output file from Network_Code.cpp is present within the folder. This processing code is only designed to construct data cubes where the DOC, Autotrophic Plankton, and Heterotrophic Plankton variables are changing along the cubes' axes, as occurs in all experiments conducted in the manuscript.
+
+The outputs from Process_Network_Output.py are files named "processed.txt". These files can be compared by the Compare_Processed_Networks.py python script. In order to compare two files, re-name one file as processed_1.txt and the other, to which it is to be compared, as processed_2.txt.
+
+
+Compare_Processed_Networks.py is a python script which compares two txt files that have been produced by the Process_Network_Output.py python script. It subtracts the calculated stability at every point in one 60x60x60 data cube produced by Process_Network_Output.py from the calculated stability at the equivalent point in the other cube produced by a separate run of Process_Network_Output.py. It then outputs a series of plots showing the effect of transitioning from one ecosystem network to the other on the stability of the ecosystem under every set of conditions covered by the 60x60x60 cube of points.
+
+This processing code is only designed to construct data cubes where the DOC, Autotrophic Plankton, and Heterotrophic Plankton variables are changing along the cubes' axes, as occurs in all experiments conducted in the manuscript.
