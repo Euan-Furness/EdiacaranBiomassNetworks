@@ -1,6 +1,6 @@
 // This code is assocaited with "Sloppy feeding by predators destabilises early animal food webs in the Ediacaran".
-// In order to run this code, please modify the filepath located at flag "A)", and modify the settings located at flags "B)",
-// "C)", "D)", and "E)" as required to replicate the desired experiments.
+// In order to run this code, please modify the settings located at flags "B)", "C)", "D)", and "E)" as required to
+// replicate the desired experiments.
 
 #pragma comment(linker, "/HEAP:8000000")
 #pragma comment(linker, "/STACK:8000000")
@@ -8,7 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <math.h>
-#include <C:/Eigen/Eigenvalues>
+#include "../eigen/Eigen/Eigenvalues"
 #include <time.h>
 
 using namespace std;
@@ -352,9 +352,9 @@ int main() {
         return 0;
     }
 
-    ofstream OutputFile; // A) Modify the below filepath as required; a text file will be created there, containing the output data cube.
+    ofstream OutputFile;
     if (WriteLog) {
-        OutputFile.open("C:/Users/Local User/Data Outputs/Outputs/Network Sims/Experimental for manuscript/Cubes/Systematically Varied Parameter Values/Nilpena_1TF/output.txt");
+        OutputFile.open("./output.txt");
     }
 
     srand(time(NULL));

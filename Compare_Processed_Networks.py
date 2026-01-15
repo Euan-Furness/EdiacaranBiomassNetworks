@@ -5,10 +5,7 @@ Created on Thu Oct  3 17:07:45 2024
 @author: enf21
 
 This code is associated with, "Sloppy feeding by predators destabilises early animal food webs in the Ediacaran".
-In order to run this code:
-    a) modify the "files" list to point at the two different files output from the "Process_Network_Output.py"
-    script that you wish to compare.
-    b) modify the "outputfile" filepath to specify a name and location for the output for this script.
+To run this code, change the "files" variable to point to the processed data outputs to be compared.
 """
 
 import seaborn
@@ -28,11 +25,9 @@ summary_one_cube = True
 summary_which_cube = 0
 
 output_detritus_curve = True
-outputfile = "C:/Users/Local User/Data Outputs/Outputs/Network Sims/Experimental for manuscript/Cubes/Systematically Varied Parameter Values/Nilpena_1TF/run.txt"
+outputfile = "./run.txt"
 
-#files = ["C:/Users/enf21/Data Outputs/Outputs/Network Sims/Experimental for manuscript/Cubes/Systematically Varied Parameter Values/processed_Nilpena_NoPredNoZoo_dAutHetAmoHigh.txt","C:/Users/enf21/Data Outputs/Outputs/Network Sims/Experimental for manuscript/Cubes/Systematically Varied Parameter Values/processed_Nilpena_PredNoZoo_dAutHetAmoHigh_PredSize5.txt","C:/Users/enf21/Data Outputs/Outputs/Network Sims/Experimental for manuscript/Cubes/Systematically Varied Parameter Values/processed_Nilpena_NoPredZoo_dAutHetAmoHigh_dZooLow.txt","C:/Users/enf21/Data Outputs/Outputs/Network Sims/Experimental for manuscript/Cubes/Systematically Varied Parameter Values/processed_Nilpena_PredZoo_dAutHetAmoHigh_PredSize5_dZooLow.txt"]
-#names = ["NoPredNoZoo","PredNoZoo","NoPredZoo","PredZoo"]
-files = ["C:/Users/Local User/Data Outputs/Outputs/Network Sims/Experimental for manuscript/Cubes/Systematically Varied Parameter Values/Nilpena_1TF/papercode_processed_nopredators.txt","C:/Users/Local User/Data Outputs/Outputs/Network Sims/Experimental for manuscript/Cubes/Systematically Varied Parameter Values/Nilpena_1TF/papercode_processed_omnipredators.txt"]
+files = [".processed_NoPredators.txt",".processed_Predators.txt"]
 names = ["NoPredNoZoo", "PredNoZoo"]
 
 Variables = ["DOC biomass", "Autotrophic plankton biomass", "Heterotrophic plankton biomass"]

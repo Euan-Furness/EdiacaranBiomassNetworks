@@ -5,11 +5,6 @@ Created on Tue Oct  1 10:38:54 2024
 @author: enf21
 
 This code is associated with, "Sloppy feeding by predators destabilises early animal food webs in the Ediacaran".
-In order to run this code:
-    a) modify the "inputfile" filepath to point at the file output from the C++ code.
-    b) modify the "outputfile" filepath to specify a name and location for the output for this script, which can
-    then be fed into "Compare_Processed_Networks.py" along with a second processed data cube, to compare their
-    stability values.
 """
 
 import math
@@ -17,7 +12,7 @@ import seaborn
 import matplotlib.pyplot as plt
 
 write = True
-outputfile = "C:/Users/Local User/Data Outputs/Outputs/Network Sims/Experimental for manuscript/Cubes/Systematically Varied Parameter Values/Nilpena_1TF/processed.txt"
+outputfile = "./processed.txt"
 
 plot = True
 plotaxis = 0
@@ -28,7 +23,7 @@ loopsummary = True
 PositiveLoops = {}
 NegativeLoops = {}
 
-inputfile = "C:/Users/Local User/Data Outputs/Outputs/Network Sims/Experimental for manuscript/Cubes/Systematically Varied Parameter Values/Nilpena_1TF/papercode_output_omnipredators.txt"
+inputfile = ".output.txt"
 
 Variables = ["DOC biomass", "Autotrophic plankton biomass", "Heterotrophic plankton biomass"]
 
