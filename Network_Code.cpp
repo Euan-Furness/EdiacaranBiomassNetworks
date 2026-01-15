@@ -8,7 +8,7 @@
 #include <iostream>
 #include <fstream>
 #include <math.h>
-#include <C:/Eigen/Eigenvalues>
+#include <C:/Users/euanf/eigen/Eigen/Eigenvalues>
 #include <time.h>
 
 using namespace std;
@@ -354,7 +354,7 @@ int main() {
 
     ofstream OutputFile; // A) Modify the below filepath as required; a text file will be created there, containing the output data cube.
     if (WriteLog) {
-        OutputFile.open("C:/Users/Local User/Data Outputs/Outputs/Network Sims/Experimental for manuscript/Cubes/Systematically Varied Parameter Values/Nilpena_1TF/output.txt");
+        OutputFile.open("C:/Users/euanf/EdiacaranOutputs/output.txt");
     }
 
     srand(time(NULL));
