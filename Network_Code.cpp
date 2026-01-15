@@ -406,7 +406,7 @@ int main() {
     int propOsmo = 25;
 
     // B) The below bool controls the presence or absence of model predators in the network.
-    bool ArtificialPredators = true;
+    bool ArtificialPredators = false;
     // C) The below float controls the biomass of predators in the network.
     float PredatorBiomass = 8;
     float dPred = exp(1 - (0.25 * log(5)));
@@ -508,28 +508,39 @@ int main() {
     }
 
     //Cube, in this case
-    float DOCValues[61];
-    float AutValues[61];
-    float HetValues[61];
-    DOCValues[0] = log(SpeciesArray[DOC].EqBiomass * 0.01);
-    DOCValues[60] = log(SpeciesArray[DOC].EqBiomass * 100);
-    AutValues[0] = log(SpeciesArray[Autotrophic_Plankton].EqBiomass * 0.01);
-    AutValues[60] = log(SpeciesArray[Autotrophic_Plankton].EqBiomass * 100);
-    HetValues[0] = log(SpeciesArray[Heterotrophic_Plankton].EqBiomass * 0.01);
-    HetValues[60] = log(SpeciesArray[Heterotrophic_Plankton].EqBiomass * 100);
+    float MicrobialValues[61];
+    float SuspensioNDetritusFeederValues[61];
+    float GrazerValues[61];
+    MicrobialValues[0] = log(0.01);
+    MicrobialValues[60] = log(100);
+    SuspensioNDetritusFeederValues[0] = log(0.01);
+    SuspensioNDetritusFeederValues[60] = log(100);
+    GrazerValues[0] = log(0.01);
+    GrazerValues[60] = log(100);
     for (int i = 1; i < 60; i++) {
-        DOCValues[i] = DOCValues[0] + (float(i) / 60) * (DOCValues[60] - DOCValues[0]);
-        AutValues[i] = AutValues[0] + (float(i) / 60) * (AutValues[60] - AutValues[0]);
-        HetValues[i] = HetValues[0] + (float(i) / 60) * (HetValues[60] - HetValues[0]);
+        MicrobialValues[i] = MicrobialValues[0] + (float(i) / 60) * (MicrobialValues[60] - MicrobialValues[0]);
+        SuspensioNDetritusFeederValues[i] = SuspensioNDetritusFeederValues[0] + (float(i) / 60) * (SuspensioNDetritusFeederValues[60] - SuspensioNDetritusFeederValues[0]);
+        GrazerValues[i] = GrazerValues[0] + (float(i) / 60) * (GrazerValues[60] - GrazerValues[0]);
     }
     for (int i = 0; i < 61; i++) {
-        DOCValues[i] = exp(DOCValues[i]);
-        AutValues[i] = exp(AutValues[i]);
-        HetValues[i] = exp(HetValues[i]);
+        MicrobialValues[i] = exp(MicrobialValues[i]);
+        SuspensioNDetritusFeederValues[i] = exp(SuspensioNDetritusFeederValues[i]);
+        GrazerValues[i] = exp(GrazerValues[i]);
     }
-    SpeciesArray[DOC].EqBiomass = (DOCValues[CubeDim1 + 1] + DOCValues[CubeDim1]) / 2;
-    SpeciesArray[Autotrophic_Plankton].EqBiomass = (AutValues[CubeDim2 + 1] + AutValues[CubeDim2]) / 2;
-    SpeciesArray[Heterotrophic_Plankton].EqBiomass = (HetValues[CubeDim3 + 1] + HetValues[CubeDim3]) / 2;
+    SpeciesArray[DOC].EqBiomass = SpeciesArray[DOC].EqBiomass * (MicrobialValues[CubeDim1 + 1] + MicrobialValues[CubeDim1]) / 2;
+    SpeciesArray[Autotrophic_Plankton].EqBiomass = SpeciesArray[Autotrophic_Plankton].EqBiomass * (MicrobialValues[CubeDim1 + 1] + MicrobialValues[CubeDim1]) / 2;
+    SpeciesArray[Heterotrophic_Plankton].EqBiomass = SpeciesArray[Heterotrophic_Plankton].EqBiomass * (MicrobialValues[CubeDim1 + 1] + MicrobialValues[CubeDim1]) / 2;
+    SpeciesArray[Amoebae].EqBiomass = SpeciesArray[Amoebae].EqBiomass * (MicrobialValues[CubeDim1 + 1] + MicrobialValues[CubeDim1]) / 2;
+    
+    SpeciesArray[Triradial].EqBiomass = SpeciesArray[Triradial].EqBiomass * (SuspensioNDetritusFeederValues[CubeDim2 + 1] + SuspensioNDetritusFeederValues[CubeDim2]) / 2;
+    SpeciesArray[Frond].EqBiomass = SpeciesArray[Frond].EqBiomass * (SuspensioNDetritusFeederValues[CubeDim2 + 1] + SuspensioNDetritusFeederValues[CubeDim2]) / 2;
+    SpeciesArray[Sprigg].EqBiomass = SpeciesArray[Sprigg].EqBiomass * (SuspensioNDetritusFeederValues[CubeDim2 + 1] + SuspensioNDetritusFeederValues[CubeDim2]) / 2;
+    SpeciesArray[Parvan].EqBiomass = SpeciesArray[Parvan].EqBiomass * (SuspensioNDetritusFeederValues[CubeDim2 + 1] + SuspensioNDetritusFeederValues[CubeDim2]) / 2;
+    SpeciesArray[Sponge].EqBiomass = SpeciesArray[Sponge].EqBiomass * (SuspensioNDetritusFeederValues[CubeDim2 + 1] + SuspensioNDetritusFeederValues[CubeDim2]) / 2;
+    SpeciesArray[Funisia].EqBiomass = SpeciesArray[Funisia].EqBiomass * (SuspensioNDetritusFeederValues[CubeDim2 + 1] + SuspensioNDetritusFeederValues[CubeDim2]) / 2;
+    SpeciesArray[Aulo].EqBiomass = SpeciesArray[Aulo].EqBiomass * (SuspensioNDetritusFeederValues[CubeDim2 + 1] + SuspensioNDetritusFeederValues[CubeDim2]) / 2;
+    
+    SpeciesArray[Dickin].EqBiomass = SpeciesArray[Dickin].EqBiomass * (GrazerValues[CubeDim3 + 1] + GrazerValues[CubeDim3]) / 2;
     
     //Interaction Assignment
     TrophicInteractionsArray[Heterotrophic_Plankton][Amoebae].AssignLinkage(33);
