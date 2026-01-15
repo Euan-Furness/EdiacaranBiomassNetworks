@@ -11,11 +11,13 @@ Comments within the script header point to the lines that may need to be adjuste
 
 Process_Network_Output.py is a python script which converts the raw output files from Network_Code.cpp into more concise files that can then be read by the Compare_Processed_Networks.py python script. These more concise files consist of 60x60x60 cubes of data, where each axis of the cube represents variation in one biomass value within the network.
 
-Process_Network_Output.py shoudl run out of the box, provided that a suitable output file from Network_Code.cpp is present within the folder. This processing code is only designed to construct data cubes where the DOC, Autotrophic Plankton, and Heterotrophic Plankton variables are changing along the cubes' axes, as occurs in all experiments conducted in the manuscript.
+Process_Network_Output.py should run out of the box, provided that a suitable output file from Network_Code.cpp is present within the folder, and is named "output.txt". This processing code is only designed to construct data cubes where the DOC, Autotrophic Plankton, and Heterotrophic Plankton variables are changing along the cubes' axes, as occurs in all experiments conducted in the manuscript.
 
-The outputs from Process_Network_Output.py are files named "processed.txt". These files can be compared by the Compare_Processed_Networks.py python script. In order to compare two files, re-name one file as processed_1.txt and the other, to which it is to be compared, as processed_2.txt.
+The outputs from Process_Network_Output.py are files named "processed.txt". These files can be compared by the Compare_Processed_Networks.py python script. In order to compare two files, re-name the two files, and plug their names into the "files" variable within the script.
 
 
 Compare_Processed_Networks.py is a python script which compares two txt files that have been produced by the Process_Network_Output.py python script. It subtracts the calculated stability at every point in one 60x60x60 data cube produced by Process_Network_Output.py from the calculated stability at the equivalent point in the other cube produced by a separate run of Process_Network_Output.py. It then outputs a series of plots showing the effect of transitioning from one ecosystem network to the other on the stability of the ecosystem under every set of conditions covered by the 60x60x60 cube of points.
 
 This processing code is only designed to construct data cubes where the DOC, Autotrophic Plankton, and Heterotrophic Plankton variables are changing along the cubes' axes, as occurs in all experiments conducted in the manuscript.
+
+Raw data used in the manuscript can be found in the "Raw Data" folder. These are the files created by the Network_Code.cpp script. Manuscript results can be recreated by running these data through the Process_Network_Output.py and Compare_Processed_Networks.py scripts.
