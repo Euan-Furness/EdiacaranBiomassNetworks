@@ -21,3 +21,5 @@ Compare_Processed_Networks.py is a python script which compares two txt files th
 This processing code is only designed to construct data cubes where the DOC, Autotrophic Plankton, and Heterotrophic Plankton variables are changing along the cubes' axes, as occurs in all experiments conducted in the manuscript.
 
 Raw data used in the manuscript can be found in the "Raw Data" folder. These are the files created by the Network_Code.cpp script. Manuscript results can be recreated by running these data through the Process_Network_Output.py and Compare_Processed_Networks.py scripts.
+
+Network_Code_Dickinsonia.cpp, Network_Code_Frond-Dominated.cpp, Network_Code_Phototrophic.cpp and Network_Code_Tubular.cpp are all very variations of Network_Code.cpp, and can be run in the same way producing outputs of the same format These versions of the code are based on alternative fossil surfaces, as described in the main text.
